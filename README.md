@@ -57,7 +57,6 @@ Nếu bạn tải file đã build sẵn (từ **Releases**):
 
 1. Chuột phải vào `FPT_Wifi_Tool.exe`
 2. Chọn **Run as Administrator**
-   *(bắt buộc để điều khiển WiFi Adapter)*
 3. Nhập **MSSV** và **Mật khẩu** (chỉ lần đầu)
 
 ---
