@@ -1,0 +1,5 @@
+requests
+beautifulsoup4
+getmac
+pywifi; sys_platform == 'win32'
+comtypes; sys_platform == 'win32'
