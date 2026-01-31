@@ -106,17 +106,15 @@ pip install pyinstaller
 **Windows:**
 
 ```bash
-pyinstaller --onefile --clean \
---name "FPT_Auto_Wifi" \
-main.py
+pyinstaller --onefile --icon="utils/img/icon.ico" --clean \
+--name "FPT_Auto_Wifi" main.py
 ```
 
 **macOS:**
 
 ```bash
-pyinstaller --onefile --clean \
---name "FPT_Auto_Wifi" \
-main.py
+pyinstaller --onefile --icon="utils/img/icon.icns" --clean \
+--name "FPT_Auto_Wifi" main.py
 ```
 
 ---
