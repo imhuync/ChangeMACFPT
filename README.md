@@ -1,8 +1,6 @@
-# 📶 FPT Auto MAC Register & WiFi Switcher
+# FPT Auto MAC Register & WiFi Switcher
 
 Tool tự động hóa quy trình **register/change MAC Address** lên hệ thống của **Đại học FPT** và tự động chuyển đổi kết nối sang mạng **ĐH-FPT** sau khi đăng ký thành công.
-
-✅ Hỗ trợ **Windows** và **macOS**
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
 ![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS-lightgrey)
@@ -12,16 +10,16 @@ Tool tự động hóa quy trình **register/change MAC Address** lên hệ th�
 ## 🚀 Tính năng chính
 
 * **Tự động nhận diện hệ điều hành** (Windows / macOS)
-* **Auto Connect**
+* **Auto Connect:**
   Tự động kết nối vào mạng đăng ký
   `FUHL-Register Your Laptop`
-* **Auto Register**
+* **Auto Register:**
   Đăng nhập portal, lấy MAC máy và gửi yêu cầu đăng ký MAC
-* **Auto Switch**
+* **Auto Switch:**
   Tự động chuyển sang mạng **ĐH-FPT** sau khi đăng ký thành công
-* **Lưu cấu hình**
+* **Lưu cấu hình:**
   Chỉ cần nhập MSSV & mật khẩu **một lần**
-* **Bảo mật**
+* **Bảo mật:**
   Mật khẩu được mã hóa và lưu local trong `config.json`
 
 ---
@@ -82,7 +80,7 @@ ChangeMACFPT/
 │
 ├── main.py              # File chạy chính
 ├── requirements.txt     # Dependencies
-├── config.json          # File config (tự sinh)
+├── config.json          # File config
 │
 ├── core/
 │   ├── __init__.py
@@ -122,18 +120,13 @@ main.py
 
 ---
 
-## ⚠️ Lưu ý
+## Troubleshooting
 
-### 🔐 Mạng ĐH-FPT
-
-* **Windows**
-  Nếu máy chưa từng kết nối, Windows sẽ hiện popup yêu cầu nhập User/Pass
-* **macOS**
-  Tool sẽ reset WiFi để macOS tự ưu tiên mạng bảo mật cao hơn
-
-### 🗂 File cấu hình
-
-* Muốn đổi tài khoản → **xóa `config.json`** rồi chạy lại tool
+-   **Lỗi "Unreachable network"**: Tool sẽ tự động thử lại 3 lần. Nếu vẫn lỗi, hãy kiểm tra lại Wi-Fi.
+-   **Lỗi Location/Admin**: Cần được cấp quyền để tự động kết nối đến Wifi DH-FPT. Nếu không muốn cấp, có thể tự kết nối thủ công.
+-   **Lỗi Admin**: Chạy với quyền quản trị "Run as Administrator".
+-   **Không tìm thấy Profile**: Hãy kết nối thủ công vào mạng `DH-FPT` một lần để Windows lưu profile, sau đó chạy lại tool.
+-   **Đổi tài khoản**: **xóa `config.json`** rồi chạy lại tool
 
 ---
 
@@ -147,3 +140,4 @@ main.py
 
 Tool được viết cho **mục đích học tập và hỗ trợ sinh viên** thao tác nhanh hơn.
 Vui lòng sử dụng **đúng quy định của nhà trường**.
+Config được lưu local trên máy của user, tool **không thu thập** bất kỳ thông tin nào.
