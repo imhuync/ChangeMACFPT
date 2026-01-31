@@ -5,6 +5,8 @@ Tool tự động hóa quy trình **register/change MAC Address** lên hệ th�
 ![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
 ![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS-lightgrey)
 
+![preview] (utils/img/preview.png)
+
 ---
 
 ## 🚀 Tính năng chính
