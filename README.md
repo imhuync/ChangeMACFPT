@@ -129,7 +129,9 @@ pyinstaller --onefile --icon="utils/img/icon.icns" --clean \
 
 ---
 
-## 🤝 Đóng góp
+## 🤝 Contribution
+
+Contributions of all types are more than welcome; if you are interested in contributing code, feel free to check out my GitHub Issues and Projects to get stuck in to show us what you're made of.
 
 @imhuync
 
