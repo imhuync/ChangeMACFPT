@@ -56,7 +56,7 @@ class FPTRegister:
             final_resp = self.session.post(resp.url, data=payload_mac)
             
             if final_resp.status_code == 200:
-                return True, "Đổi MAC thành công."
+                return True, "Successfully."
             return False, f"Lỗi Server: {final_resp.status_code}"
 
         except Exception as e:

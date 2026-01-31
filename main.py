@@ -2,13 +2,14 @@ import os
 import json
 import getpass
 import time
+import subprocess
 from utils.crypto import encode_pass, decode_pass
 from utils.network import connect_register_wifi, switch_to_enterprise_wifi, disconnect_wifi, get_current_mac
 from core.register import FPTRegister
 
 CONFIG_FILE = "config.json"
 REGISTER_WIFI = "FUHL-Register Your Laptop"
-MAIN_WIFI = "ĐH-FPT"
+MAIN_WIFI = "DH-FPT"
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -30,8 +31,31 @@ def load_or_create_config():
         json.dump({"username": u, "password": encode_pass(p)}, f)
     return u, p
 
+def _check_and_open_location_settings():
+    print("[Check] Đang kiểm tra quyền Location...")
+    
+    test = subprocess.run(
+        ["netsh", "wlan", "show", "networks"], 
+        capture_output=True, 
+        text=True, 
+        encoding="mbcs",
+        errors="ignore"
+    )
+    output = (test.stdout + test.stderr).lower()
+    if "location permission" in output or "quyền vị trí" in output:
+        print("[WARN] Không tự động chuyển sang DH-FPT được vì chưa bật Location.")
+        print("-> Đang mở cài đặt Location...")
+        print("-> Hãy bật 'Location services' và 'Let desktop apps access your location'.")
+        
+        os.system("start ms-settings:privacy-location")
+        
+        input(">>> Sau khi bật xong, nhấn ENTER tại đây để tiếp tục...")
+        return True
+    return False
+
 def main():
     clear_screen()
+
     print("===============================================")
     print(f"    AUTO CHANGE MAC ADDRESS FOR FPTU WIFI     ")
     print("===============================================")
@@ -45,17 +69,32 @@ def main():
 
     print(f"\n[1] Đang kết nối Wifi đăng ký: {REGISTER_WIFI}...")
     if connect_register_wifi(REGISTER_WIFI):
-        print(f"    -> Đã kết nối. Đang chạy tool đổi MAC...")
-        
+        print(f"-> Đã kết nối. Đang chạy tool đổi MAC...")
         reg = FPTRegister(user, pwd)
-        success, msg = reg.run(clean_mac)
-        print(f"    -> Kết quả Server: {msg}")
+        success = False
+        msg = ""
+        
+        for attempt in range(3):
+            success, msg = reg.run(clean_mac)
+            if success:
+                break
+            if "unreachable" in str(msg).lower() or "connection" in str(msg).lower():
+                print(f"-> [!] Lỗi mạng ({attempt+1}/3). Đang thử lại sau 3s...")
+                time.sleep(3)
+            else:
+                break
+        print(f"-> Kết quả Server: {msg}")
         
         if success:
-            print("-" * 40)
-            print(f"[2] Đổi MAC Address thành công! Đang chuyển mạng...")
-            switch_to_enterprise_wifi(MAIN_WIFI)
-            print(f"\n[INFO] Đã chuyển sang mạng '{MAIN_WIFI}'.")
+            print("-" * 47)
+            print(f"[2] Đổi MAC Address thành công! Đang chuyển mạng sang '{MAIN_WIFI}'...")
+            _check_and_open_location_settings()
+            
+            if switch_to_enterprise_wifi(MAIN_WIFI):
+                print(f"[Info] Đã chuyển sang mạng '{MAIN_WIFI}'.")
+            else:
+                print(f"\n[Warn] Không thể tự động chuyển sang '{MAIN_WIFI}'.")
+                print("       Hãy kết nối thủ công.")
         else:
             print(f"    -> Thất bại. Ngắt kết nối.")
             disconnect_wifi()
