@@ -9,7 +9,6 @@ Tool tự động hóa quy trình **register/change MAC Address** lên hệ th�
 
 ## 🚀 Tính năng chính
 
-* **Tự động nhận diện hệ điều hành** (Windows / macOS)
 * **Auto Connect:**
   Tự động kết nối vào mạng đăng ký
   `FUHL-Register Your Laptop`
@@ -123,7 +122,7 @@ main.py
 ## Troubleshooting
 
 -   **Lỗi "Unreachable network"**: Tool sẽ tự động thử lại 3 lần. Nếu vẫn lỗi, hãy kiểm tra lại Wi-Fi.
--   **Lỗi Location/Admin**: Cần được cấp quyền để tự động kết nối đến Wifi DH-FPT. Nếu không muốn cấp, có thể tự kết nối thủ công.
+-   **Lỗi Location**: Cần được cấp quyền để tự động kết nối đến Wifi DH-FPT. Nếu không muốn cấp, có thể tự kết nối thủ công.
 -   **Lỗi Admin**: Chạy với quyền quản trị "Run as Administrator".
 -   **Không tìm thấy Profile**: Hãy kết nối thủ công vào mạng `DH-FPT` một lần để Windows lưu profile, sau đó chạy lại tool.
 -   **Đổi tài khoản**: **xóa `config.json`** rồi chạy lại tool
