@@ -139,5 +139,7 @@ main.py
 ## 📌 Disclaimer
 
 Tool được viết cho **mục đích học tập và hỗ trợ sinh viên** thao tác nhanh hơn.
+
 Vui lòng sử dụng **đúng quy định của nhà trường**.
+
 Config được lưu local trên máy của user, tool **không thu thập** bất kỳ thông tin nào.
